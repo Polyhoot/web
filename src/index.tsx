@@ -7,6 +7,8 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import Home from './pages/home/home'
 import GamePage from './pages/game'
+import LoginPage from './pages/auth/login'
+import RegisterPage from './pages/auth/register'
 
 const theme = {
   global: {
@@ -32,6 +34,8 @@ root.render(
             <Route path={'profile'} element={<Text>{'Hello profile'}</Text>} />
           </Route>
           <Route path={'game/*'} element={<GamePage />} />
+          <Route path={'login/*'} element={<LoginPage />} />
+          <Route path={'register/*'} element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </Grommet>
@@ -41,4 +45,5 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// eslint-disable-next-line no-console
 reportWebVitals(console.log)

@@ -18,8 +18,10 @@ function App() {
       <div className={'App'}>
         <Header>
           <Button icon={<Home />} onClick={() => navigate('/')} />
-          <Button icon={<Login />} onClick={() => navigate('/login')} label={'Login'} secondary />
-          <Button icon={<AddCircle />} onClick={() => navigate('/register')} label={'Register'} />
+          <Box direction={'row'} width={'300px'} justify={'between'} margin={'auto 20px auto auto'}>
+            <Button icon={<Login />} onClick={() => navigate('/login')} label={'Login'} secondary />
+            <Button icon={<AddCircle />} onClick={() => navigate('/register')} label={'Register'} />
+          </Box>
         </Header>
         <Outlet />
       </div>

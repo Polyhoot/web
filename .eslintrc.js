@@ -22,5 +22,8 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    "@typescript-eslint/semi": [2, "never"],
+    "react/jsx-curly-brace-presence": [2, "always"],
+    "@typescript-eslint/no-unused-vars": ["warn"]
   },
 };

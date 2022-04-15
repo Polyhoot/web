@@ -37,7 +37,7 @@ function LoginPage() {
             />
           </FormField>
           <FormField label={'Password'}>
-            <TextInput type={'password'} name={'password'} onInput={handleInput} />
+            <TextInput type={'password'} name={'password'} placeholder={'Your password'} onInput={handleInput} />
           </FormField>
           <Box direction={'row'} margin={'10px'}>
             <Anchor

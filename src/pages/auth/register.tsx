@@ -30,7 +30,7 @@ function RegisterPage() {
         <Heading level={2} margin={'30px auto'}>{'Create account'}</Heading>
         <Form autoComplete={'off'} validate={'blur'} onSubmit={handleSubmit}>
           <FormField label={'You name'} name={'name'}>
-            <TextInput placeholder={'Vasya petrov'} name={'name'} autoComplete={'off'} onInput={handleInput} />
+            <TextInput placeholder={'Vasya Petrov'} name={'name'} autoComplete={'off'} onInput={handleInput} />
           </FormField>
           <FormField label={'Email'} name={'email'} validate={{ regexp: validateEmail, status: 'error', message: 'Provide valid email' }}>
             <TextInput placeholder={'admin@gmail.com'} name={'email'} autoComplete={'new-password'} type={'email'} onInput={handleInput} />
@@ -41,10 +41,7 @@ function RegisterPage() {
           <FormField
             label={'Confirm password'}
             name={'password-confirm'}
-            validate={(val) => {
-              console.log(val, credentials.password)
-              return (val === credentials.password ? undefined : "Passwords aren't the same")
-            }}
+            validate={(val) => (val === credentials.password ? undefined : "Passwords aren't the same")}
           >
             <TextInput type={'password'} placeholder={'Your password again'} name={'password-confirm'} autoComplete={'new-password'} />
           </FormField>

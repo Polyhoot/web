@@ -6,6 +6,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import validateEmail from '../../utils/validateEmail'
 import validatePassword from '../../utils/validatePassword'
+import getServerUrl from '../../utils/getServerUrl'
+import CreateUserResponse from '../../domain/CreateUserResponse'
 
 function RegisterPage() {
   const navigate = useNavigate()
@@ -15,8 +17,23 @@ function RegisterPage() {
     name: '',
   })
 
-  const handleSubmit = () => {
-    console.log(credentials)
+  const handleSubmit = async () => {
+    const response: CreateUserResponse = await fetch(`${getServerUrl}user/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    }).then(
+      (res) => res.json(),
+    )
+    if (response.token) {
+      localStorage.setItem('token', response.token)
+      navigate('/')
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(response.errorMessage)
+    }
   }
 
   const handleInput = (ev: React.FormEvent<HTMLInputElement>) => {

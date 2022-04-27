@@ -9,6 +9,7 @@ import Home from './pages/home/home'
 import GamePage from './pages/game'
 import LoginPage from './pages/auth/login'
 import RegisterPage from './pages/auth/register'
+import CreatorPage from './pages/creator'
 
 const theme = {
   global: {
@@ -33,6 +34,7 @@ root.render(
             <Route index element={<Home />} />
             <Route path={'profile'} element={<Text>{'Hello profile'}</Text>} />
           </Route>
+          <Route path={'creator'} element={<CreatorPage />} />
           <Route path={'game/*'} element={<GamePage />} />
           <Route path={'login/*'} element={<LoginPage />} />
           <Route path={'register/*'} element={<RegisterPage />} />

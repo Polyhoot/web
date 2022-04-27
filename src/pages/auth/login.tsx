@@ -4,6 +4,8 @@ import {
 } from 'grommet'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CreateUserResponse from '../../domain/CreateUserResponse'
+import getServerUrl from '../../utils/getServerUrl'
 import validateEmail from '../../utils/validateEmail'
 
 function LoginPage() {
@@ -14,8 +16,24 @@ function LoginPage() {
     password: '',
   })
 
-  const handleSubmit = () => {
-    console.log(credentials)
+  const handleSubmit = async () => {
+    const response: CreateUserResponse = await fetch(`${getServerUrl}user/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    }).then(
+      (res) => res.json(),
+    )
+
+    if (response.token) {
+      localStorage.setItem('token', response.token)
+      navigate('/')
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(response.errorMessage)
+    }
   }
 
   const handleInput = (ev: React.FormEvent<HTMLInputElement>) => {

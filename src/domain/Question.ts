@@ -3,7 +3,8 @@ interface Question {
   time: number,
   type: 0 | 1,
   media?: Picture | Video,
-  answers?: Answer[]
+  answers: Answer[],
+  id: string
 }
 
 interface Answer {

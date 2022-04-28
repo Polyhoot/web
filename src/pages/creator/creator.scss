@@ -3,6 +3,38 @@
 }
 .creator {
   height: 100%;
+  &-sidebar {
+    &--card {
+      &_answers {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        &__item {
+          display: flex;
+          flex-direction: row;
+          background-color: #F2F2F2;
+          width: calc(50% - 10px);
+          margin: 2px 4px;
+          height: 8px;
+          border: 1px solid grey;
+          font-size: 5px;
+          text-align: center;
+          line-height: initial;
+          &.correct {
+            border: 1px solid #6FFFB0;
+          }
+          span {
+            margin: auto;
+            height: 6px;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            overflow-y: hidden;
+          }
+        }
+      }
+    }
+  }
   &-question {
     width: calc(100% - 50px);
     margin: auto;
@@ -18,6 +50,27 @@
       align-items: center;
       justify-items: center;
       border-radius: 10px;
+    }
+    &--answers {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      &_item {
+        display: flex;
+        flex-direction: row;
+        background-color: #F2F2F2;
+        width: calc(50% - 20px);
+        margin: 20px 10px;
+        height: 100px;
+        box-shadow: rgb(0 0 0 / 15%) 0px -0.25rem 0px 0px inset;
+        &__input {
+          height: 100%;
+          &:focus {
+            box-shadow: none !important;
+          }
+        }
+      }
     }
   }
 }

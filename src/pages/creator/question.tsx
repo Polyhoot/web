@@ -1,9 +1,12 @@
 import { useStore } from '@nanostores/react'
-import { Box, Text, TextInput } from 'grommet'
-import { AddCircle } from 'grommet-icons'
-import React, { useEffect } from 'react'
-import { Question } from '../../domain/Question'
-import { addQuestion, editQuestion, questions } from '../../stores/pack'
+import { Box, TextInput } from 'grommet'
+import { CircleAlert } from 'grommet-icons'
+import { nanoid } from 'nanoid'
+import React, { useCallback, useEffect, useState } from 'react'
+import {
+  editQuestion, questions, updateAnswerText, updateTitle,
+} from '../../stores/pack'
+import CreatorAnswer from './answer'
 import MediaHolder from './mediaHolder'
 
 function QuestionEditor(props: {
@@ -11,36 +14,36 @@ function QuestionEditor(props: {
 }) {
   const { id } = props
   const store = useStore(questions)
-  useEffect(() => {
-    if (store.length - 1 < id) {
-      addQuestion({
-        text: '',
-        time: 20,
-        type: 0,
-      })
-    }
-  }, [])
-  const question = store[id] || {
-    text: '',
-    time: 20,
-    type: 0,
-  }
-
-  const updateQuestionInStore = () => {
-    editQuestion(id, question)
-  }
+  const current = store[id]
   return (
     <div className={'creator-question'}>
       <TextInput
         placeholder={'Enter your question...'}
-        className={'header-input'}
-        onChange={(e) => {
-          question.text = e.target.value
-          updateQuestionInStore()
+        style={{
+          boxShadow: 'rgb(0 0 0 / 15%) 0px -4px 0px 0px inset',
+          border: '2px solid rgb(0 0 0 / 5%)',
         }}
+        value={current.text}
+        onChange={(e) => updateTitle(id, e.target.value)}
         width={'700px'}
+        textAlign={'center'}
+        size={'large'}
+        plain
+        focusIndicator={false}
       />
-      <MediaHolder question={question} />
+      <MediaHolder question={current} />
+      <div className={'creator-question--answers'}>
+        {current.answers.map((ans, index) => (
+          <CreatorAnswer
+            updateAnswerText={(text) => updateAnswerText(id, text, index)}
+            index={index}
+            isCorrect={ans.isCorrect}
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${id}_answer#${index}`}
+            defaultText={ans.text}
+          />
+        ))}
+      </div>
     </div>
   )
 }

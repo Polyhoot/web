@@ -19,6 +19,11 @@ const theme = {
       height: '20px',
     },
   },
+  checkBox: {
+    check: {
+      radius: '50%',
+    },
+  },
 }
 
 const element = document.getElementById('root')

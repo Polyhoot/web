@@ -13,6 +13,7 @@
     "@types/react-dom": "^17.0.14",
     "grommet": "^2.22.0",
     "grommet-icons": "^4.7.0",
+    "nanoid": "^3.3.3",
     "nanostores": "^0.5.12",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

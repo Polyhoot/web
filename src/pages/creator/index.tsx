@@ -1,9 +1,16 @@
-import { Box, Grid, Page } from 'grommet'
 import React from 'react'
+import { useStore } from '@nanostores/react'
+import {
+  Box, Grid,
+} from 'grommet'
+import { pack } from '../../stores/pack'
 import './creator.scss'
 import CreatorHeader from './header'
+import Sidebar from './sidebar'
+import QuestionEditor from './question'
 
 function CreatorPage() {
+  const store = useStore(pack)
   return (
     <div className={'App'}>
       <div className={'creator'}>
@@ -25,8 +32,12 @@ function CreatorPage() {
           >
             <CreatorHeader />
           </Box>
-          <Box gridArea={'slides'} background={'light-2'} border={'between'} />
-          <Box gridArea={'main'} background={'light-2'} />
+          <Box gridArea={'slides'} background={'light-2'} border={'between'}>
+            <Sidebar />
+          </Box>
+          <Box gridArea={'main'}>
+            <QuestionEditor id={0} />
+          </Box>
           <Box gridArea={'settings'} background={'light-3'} />
         </Grid>
       </div>

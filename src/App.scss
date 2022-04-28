@@ -2,8 +2,10 @@
 .App {
   text-align: center;
   margin: 0;
-  height: 60px;
+  height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {

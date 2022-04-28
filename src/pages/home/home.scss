@@ -1,0 +1,9 @@
+.Home {
+  height: 100%;
+  display: flex;
+  &-grid {
+    width: 80%;
+    min-width: 900px;
+    max-width: 1000px;
+  }
+}

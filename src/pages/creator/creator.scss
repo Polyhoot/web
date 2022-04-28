@@ -3,6 +3,23 @@
 }
 .creator {
   height: 100%;
+  &-question {
+    width: calc(100% - 50px);
+    margin: auto;
+    height: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    &--media {
+      width: 700px;
+      cursor: pointer;
+      height: 400px;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      border-radius: 10px;
+    }
+  }
 }
 
 .header-input {

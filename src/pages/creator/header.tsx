@@ -1,10 +1,12 @@
 import {
+  Anchor,
   Box,
   Button, FormField, Header, TextInput,
 } from 'grommet'
-import { Home } from 'grommet-icons'
+import { CloudUpload, Home } from 'grommet-icons'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { pack } from '../../stores/pack'
 
 function CreatorHeader() {
   const navigate = useNavigate()
@@ -18,9 +20,17 @@ function CreatorHeader() {
     >
       <Button icon={<Home />} onClick={() => navigate('/')} alignSelf={'center'} />
       <Box width={'200px'}>
-        <TextInput placeholder={'Enter pack name...'} className={'header-input'} />
+        <TextInput
+          placeholder={'Enter pack name...'}
+          className={'header-input'}
+          onChange={(e) => {
+            pack.setKey('name', e.target.value)
+          }}
+        />
       </Box>
-      {'Header'}
+      <Box margin={'auto 30px auto auto'}>
+        <Button primary icon={<CloudUpload />} label={'Save'} />
+      </Box>
     </Header>
   )
 }

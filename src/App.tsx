@@ -1,23 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.scss'
 import {
-  Avatar, Box, Button, Header, Menu, Text,
+  Anchor,
+  Avatar, Box, Button, Header, Menu, Spinner, Text,
 } from 'grommet'
 import {
-  AddCircle, Home, Login, UserFemale,
+  AddCircle, Login, UserFemale, Compass, HomeRounded,
 } from 'grommet-icons'
 import { useNavigate, Outlet } from 'react-router-dom'
 import { useStore } from '@nanostores/react'
 import { profile } from './stores/profile'
+import getServerUrl from './utils/getServerUrl'
+import UserInfoResponse from './domain/UserInfoResponse'
 
 function App() {
   const user = useStore(profile)
+  const [loading, setLoading] = useState(true)
+  const getUserData = async (token: string) => {
+    const result: UserInfoResponse = await fetch(`${getServerUrl}user/info`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => res.json())
+    profile.set(result)
+    setLoading(false)
+  }
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      getUserData(token)
+    }
+  }, [])
   const navigate = useNavigate()
-  if (!user.userId) {
+  if (loading) {
+    return (
+      <div className={'App'}>
+        <Spinner size={'large'} margin={'auto'} />
+      </div>
+    )
+  }
+  if (!user.email) {
     return (
       <div className={'App'}>
         <Header>
-          <Button icon={<Home />} onClick={() => navigate('/')} />
+          <Button icon={<HomeRounded />} onClick={() => navigate('/')} />
           <Box direction={'row'} width={'300px'} justify={'between'} margin={'auto 20px auto auto'}>
             <Button icon={<Login />} onClick={() => navigate('/login')} label={'Login'} secondary />
             <Button icon={<AddCircle />} onClick={() => navigate('/register')} label={'Register'} />
@@ -30,7 +56,11 @@ function App() {
   return (
     <div className={'App'}>
       <Header>
-        <Button icon={<Home />} onClick={() => navigate('/')} />
+        <Box direction={'row'} width={'190px'} justify={'between'} margin={'auto 0px auto 20px'}>
+          <Anchor icon={<HomeRounded />} label={'Home'} onClick={() => navigate('/')} />
+          <Anchor icon={<Compass />} label={'Discover'} />
+        </Box>
+
         <Menu
           label={(
             <Box>

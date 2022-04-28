@@ -3,8 +3,7 @@ import { map } from 'nanostores'
 export interface ProfileValue {
   name: string,
   email?: string,
-  userId?: string,
-  avatar?: string
+  packs?: string[]
 }
 
 export const profile = map<ProfileValue>({

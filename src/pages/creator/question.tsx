@@ -4,7 +4,7 @@ import { CircleAlert } from 'grommet-icons'
 import { nanoid } from 'nanoid'
 import React, { useCallback, useEffect, useState } from 'react'
 import {
-  editQuestion, questions, updateAnswerText, updateTitle,
+  editQuestion, questions, updateAnswerStatus, updateAnswerText, updateTitle,
 } from '../../stores/pack'
 import CreatorAnswer from './answer'
 import MediaHolder from './mediaHolder'
@@ -36,6 +36,7 @@ function QuestionEditor(props: {
         {current.answers.map((ans, index) => (
           <CreatorAnswer
             updateAnswerText={(text) => updateAnswerText(id, text, index)}
+            updateAnswerStatus={(status) => updateAnswerStatus(id, index, status)}
             index={index}
             isCorrect={ans.isCorrect}
             // eslint-disable-next-line react/no-array-index-key

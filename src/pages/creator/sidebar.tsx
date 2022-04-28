@@ -13,12 +13,11 @@ function Sidebar(
 ) {
   const store = useStore(questions)
   const { setQuestionId } = props
-  console.log(store)
   return (
     <div className={'creator-sidebar'}>
       {store.map((q, index) => (
         <Card key={q.id} onClick={() => setQuestionId(index)} margin={'10px auto'} width={'90%'}>
-          <CardHeader pad={'medium'}>{q.text}</CardHeader>
+          <CardHeader pad={'small'}>{q.text}</CardHeader>
           <CardBody pad={'medium'}>
             <div className={'creator-sidebar--card_answers'}>
               {q.answers.map((answer, aI) => (

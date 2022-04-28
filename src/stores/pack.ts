@@ -64,6 +64,12 @@ export function updateAnswerText(questionIndex: number, text: string, index: num
   questions.set(updated)
 }
 
+export function updateAnswerStatus(questionIndex: number, index: number, status: boolean) {
+  const updated = [...questions.get()]
+  updated[questionIndex].answers[index].isCorrect = status
+  questions.set(updated)
+}
+
 export function updateTitle(questionIndex: number, text: string) {
   const updated = [...questions.get()]
   updated[questionIndex].text = text

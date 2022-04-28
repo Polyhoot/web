@@ -26,15 +26,16 @@ const styles = [
 function CreatorAnswer(
   props: {
     updateAnswerText: (text: string) => void,
+    updateAnswerStatus: (status: boolean) => void,
     index: number,
     isCorrect: boolean
     defaultText: string
   },
 ) {
   const {
-    index, updateAnswerText, isCorrect, defaultText,
+    index, updateAnswerStatus, isCorrect, defaultText, updateAnswerText,
   } = props
-  const [checked, setChecked] = useState(isCorrect)
+  // const [checked, setChecked] = useState(isCorrect)
   return (
     <div className={'creator-question--answers_item'}>
       <Box width={'10%'} height={'96%'} background={styles[index].color}>
@@ -53,9 +54,9 @@ function CreatorAnswer(
         />
         <Box margin={'auto 10px'}>
           <CheckBox
-            checked={checked}
+            checked={isCorrect}
             className={'creator-question--answers_item__checkbox'}
-            onChange={(event) => setChecked(event.target.checked)}
+            onChange={(event) => updateAnswerStatus(event.target.checked)}
           />
         </Box>
       </Box>

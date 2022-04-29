@@ -22,13 +22,17 @@ function App() {
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => res.json())
-    profile.set(result)
+    if (result.email) {
+      profile.set(result)
+    }
     setLoading(false)
   }
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       getUserData(token)
+    } else {
+      setLoading(false)
     }
   }, [])
   const navigate = useNavigate()

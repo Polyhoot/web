@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import { atom, map, WritableAtom } from 'nanostores'
-import { Question } from '../domain/Question'
+import { Picture, Question, Video } from '../domain/Question'
 
 export interface Pack {
   name: string,
@@ -75,6 +75,12 @@ export function editQuestion(i: number, q: Question) {
   const questionsArray = questions.get()
   questionsArray[i] = q
   questions.set(questionsArray)
+}
+
+export function updateMedia(i: number, m: Video | Picture) {
+  const updated = [...questions.get()]
+  updated[i].media = m
+  questions.set(updated)
 }
 
 export const pack = map<Pack>({

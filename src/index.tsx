@@ -31,22 +31,20 @@ if (!element) throw Error('No root')
 const root = createRoot(element)
 
 root.render(
-  <React.StrictMode>
-    <Grommet theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path={'/'} element={<App />}>
-            <Route index element={<Home />} />
-            <Route path={'profile'} element={<Text>{'Hello profile'}</Text>} />
-          </Route>
-          <Route path={'creator'} element={<CreatorPage />} />
-          <Route path={'game/*'} element={<GamePage />} />
-          <Route path={'login/*'} element={<LoginPage />} />
-          <Route path={'register/*'} element={<RegisterPage />} />
-        </Routes>
-      </BrowserRouter>
-    </Grommet>
-  </React.StrictMode>,
+  <Grommet theme={theme}>
+    <BrowserRouter>
+      <Routes>
+        <Route path={'/'} element={<App />}>
+          <Route index element={<Home />} />
+          <Route path={'profile'} element={<Text>{'Hello profile'}</Text>} />
+        </Route>
+        <Route path={'creator'} element={<CreatorPage />} />
+        <Route path={'game/*'} element={<GamePage />} />
+        <Route path={'login/*'} element={<LoginPage />} />
+        <Route path={'register/*'} element={<RegisterPage />} />
+      </Routes>
+    </BrowserRouter>
+  </Grommet>,
 )
 
 // If you want to start measuring performance in your app, pass a function

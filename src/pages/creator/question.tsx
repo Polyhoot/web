@@ -1,14 +1,13 @@
 import { useStore } from '@nanostores/react'
 import { Box, Grid, TextInput } from 'grommet'
-import { CircleAlert } from 'grommet-icons'
-import { nanoid } from 'nanoid'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
-  editQuestion, questions, updateAnswerStatus, updateAnswerText, updateQuestionTime, updateTitle,
+  questions, updateAnswerStatus, updateAnswerText, updateQuestionTime, updateTitle,
 } from '../../stores/pack'
 import CreatorAnswer from './answer'
 import LeftSidebar from './left-sidebar'
 import MediaHolder from './mediaHolder'
+import MediaPickerWrapper from './mediaPicker/mediaPickerWrapper'
 
 function QuestionEditor(props: {
   id: number
@@ -16,7 +15,8 @@ function QuestionEditor(props: {
   const { id } = props
   const store = useStore(questions)
   const current = store[id]
-  console.log(store)
+  const [showPicker, setShowPicker] = useState(false)
+  console.log(current)
   return (
     <Grid
       justify={'stretch'}
@@ -44,7 +44,7 @@ function QuestionEditor(props: {
             plain
             focusIndicator={false}
           />
-          <MediaHolder question={current} />
+          <MediaHolder question={current} showPicker={() => setShowPicker(true)} />
           <div className={'creator-question--answers'}>
             {current.answers.map((ans, index) => (
               <CreatorAnswer
@@ -72,6 +72,11 @@ function QuestionEditor(props: {
           time={current.time}
         />
       </Box>
+      {
+            showPicker
+              ? <MediaPickerWrapper close={() => setShowPicker(false)} id={id} />
+              : null
+          }
     </Grid>
   )
 }

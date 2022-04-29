@@ -6,33 +6,9 @@ export interface Pack {
   name: string,
   questions: WritableAtom<Question[]>
 }
-export const questions = atom<Question[]>([{
-  text: '',
-  time: 20,
-  type: 0,
-  id: nanoid(6),
-  answers: [
-    {
-      text: '',
-      isCorrect: true,
-    },
-    {
-      text: '',
-      isCorrect: false,
-    },
-    {
-      text: '',
-      isCorrect: false,
-    },
-    {
-      text: '',
-      isCorrect: false,
-    },
-  ],
-}])
 
-export function addQuestion() {
-  questions.set([...questions.get(), {
+const createQuestion = (): Question => (
+  {
     text: '',
     time: 20,
     type: 0,
@@ -55,7 +31,13 @@ export function addQuestion() {
         isCorrect: false,
       },
     ],
-  }])
+  }
+)
+
+export const questions = atom<Question[]>([createQuestion()])
+
+export function addQuestion() {
+  questions.set([...questions.get(), createQuestion()])
 }
 
 export function updateAnswerText(questionIndex: number, text: string, index: number) {
@@ -75,9 +57,19 @@ export function updateTitle(questionIndex: number, text: string) {
   updated[questionIndex].text = text
   questions.set(updated)
 }
+export function updateQuestionTime(questionIndex: number, time: number) {
+  const updated = [...questions.get()]
+  updated[questionIndex].time = time
+  questions.set(updated)
+}
 
 export function removeQuestion(i: number) {
-  questions.set(questions.get().splice(i, 1))
+  const updated = questions.get()
+  updated.splice(i, 1)
+  if (updated.length < 1) {
+    updated.push(createQuestion())
+  }
+  questions.set(updated)
 }
 export function editQuestion(i: number, q: Question) {
   const questionsArray = questions.get()

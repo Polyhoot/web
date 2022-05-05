@@ -19,7 +19,7 @@ function VideoPicker(
   const videoId = getVideoId(video.url)
 
   const [startTime, setStartTime] = useState(0)
-  const [endTime, setEndTime] = useState(0)
+  const [endTime, setEndTime] = useState(20)
 
   const stringToSeconds = (str: string): number => {
     if (/^(([0]?[0-5][0-9]|[0-9]):([0-5][0-9]))$/.test(str)) {
@@ -53,6 +53,7 @@ function VideoPicker(
             <Box direction={'row'}>
               <MaskedInput
                 textAlign={'center'}
+                defaultValue={'00:00'}
                 mask={[
                   {
                     length: 2,
@@ -74,17 +75,18 @@ function VideoPicker(
                 label={'Set'}
                 size={'small'}
                 margin={'auto 10px'}
-                onClick={(e) => {
+                onClick={() => {
                   changeTime(startTime, endTime)
                 }}
               />
             </Box>
           </Box>
           <Box width={'120px'} margin={'0 0 0 auto'}>
-            <Text size={'small'} margin={'auto auto 5px 2px'}>{'Start Time'}</Text>
+            <Text size={'small'} margin={'auto auto 5px 2px'}>{'End Time'}</Text>
             <Box direction={'row'}>
               <MaskedInput
                 textAlign={'center'}
+                defaultValue={'00:20'}
                 mask={[
                   {
                     length: 2,
@@ -106,7 +108,7 @@ function VideoPicker(
                 label={'Set'}
                 size={'small'}
                 margin={'auto 10px'}
-                onClick={(e) => {
+                onClick={() => {
                   changeTime(startTime, endTime)
                 }}
               />
@@ -114,7 +116,7 @@ function VideoPicker(
           </Box>
         </Box>
         <Box>
-          <Button label={'Add video'} onClick={(e) => save()} />
+          <Button label={'Add video'} onClick={() => save()} />
         </Box>
       </Box>
     )

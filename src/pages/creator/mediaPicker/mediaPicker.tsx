@@ -1,8 +1,8 @@
 import {
-  Box, FormField, TextInput, Button, Text,
+  Box,
 } from 'grommet'
 import React, { useState } from 'react'
-import { Picture, Video } from '../../../domain/Question'
+import { Video } from '../../../domain/Question'
 import { updateMedia } from '../../../stores/pack'
 import MediaPickerInput from './mediaPickerInput'
 import VideoPicker from './videoPicker'
@@ -15,7 +15,7 @@ function MediaPicker(
 ) {
   const { id, close } = props
   const [video, setVideo] = useState<Video>()
-  const [picture, setPicture] = useState<Picture>()
+
   if (video) {
     return (
       <Box margin={'auto'} width={'500px'}>

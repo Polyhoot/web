@@ -16,7 +16,7 @@ function QuestionEditor(props: {
   const store = useStore(questions)
   const current = store[id]
   const [showPicker, setShowPicker] = useState(false)
-  console.log(current)
+
   return (
     <Grid
       justify={'stretch'}

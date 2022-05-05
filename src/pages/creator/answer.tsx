@@ -38,7 +38,7 @@ function CreatorAnswer(
   // const [checked, setChecked] = useState(isCorrect)
   return (
     <div className={'creator-question--answers_item'}>
-      <Box width={'10%'} height={'96%'} background={styles[index].color}>
+      <Box width={'10%'} height={'100%'} background={styles[index].color}>
         {styles[index].icon}
       </Box>
       <Box margin={'auto'} width={'88%'} direction={'row'}>

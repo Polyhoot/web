@@ -1,18 +1,19 @@
 import { nanoid } from 'nanoid'
-import { atom, map, WritableAtom } from 'nanostores'
+import { atom, map } from 'nanostores'
 import { Picture, Question, Video } from '../domain/Question'
 
 export interface Pack {
   name: string,
-  questions: WritableAtom<Question[]>
+  id?: string
 }
 
-const createQuestion = (): Question => (
+export const createQuestion = (): Question => (
   {
     text: '',
     time: 20,
     type: 0,
     id: nanoid(5),
+    media: null,
     answers: [
       {
         text: '',
@@ -85,5 +86,8 @@ export function updateMedia(i: number, m: Video | Picture) {
 
 export const pack = map<Pack>({
   name: '',
-  questions,
 })
+
+export function updatePackId(id: string) {
+  pack.setKey('id', id)
+}

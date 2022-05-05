@@ -13,7 +13,7 @@ function MediaPickerInput(
   const [videoUrl, setVideoUrl] = useState('')
   const [pictureUrl, setPictureUrl] = useState('')
   return (
-    <>
+    <Box margin={'auto'} width={'600px'}>
       <FormField
         label={'Paste URL to Youtube video'}
         width={'80%'}
@@ -33,7 +33,7 @@ function MediaPickerInput(
         <Button
           secondary
           label={'Add video'}
-          onClick={(e) => {
+          onClick={() => {
             setVideo(videoUrl)
           }}
         />
@@ -60,12 +60,12 @@ function MediaPickerInput(
         <Button
           secondary
           label={'Add picture'}
-          onClick={(e) => {
+          onClick={() => {
             setPicture(pictureUrl)
           }}
         />
       </Box>
-    </>
+    </Box>
   )
 }
 

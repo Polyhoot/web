@@ -1,15 +1,24 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import {
   Anchor,
   Box,
-  Button, FormField, Header, TextInput,
+  Button, FormField, Header, Text, TextInput,
 } from 'grommet'
 import { CloudUpload, Home } from 'grommet-icons'
 import React from 'react'
+import Switch from 'react-switch'
 import { useNavigate } from 'react-router-dom'
 import { pack } from '../../stores/pack'
 
-function CreatorHeader() {
+function CreatorHeader(
+  props: {
+    savePack: () => void,
+    toggleAutosave: () => void,
+    autoSave: boolean,
+  },
+) {
   const navigate = useNavigate()
+  const { savePack, toggleAutosave, autoSave } = props
   return (
     <Header
       height={'100%'}
@@ -28,8 +37,25 @@ function CreatorHeader() {
           }}
         />
       </Box>
-      <Box margin={'auto 30px auto auto'}>
-        <Button primary icon={<CloudUpload />} label={'Save'} />
+      <Box
+        margin={'auto 30px auto auto'}
+        direction={'row'}
+      >
+        <Box margin={'auto 20px'}>
+          <label style={{
+            display: 'flex',
+            flexDirection: 'row',
+          }}
+          >
+            <Text margin={'auto'}>{'Autosave'}</Text>
+            <Switch
+              className={'switch-toggle'}
+              onChange={() => toggleAutosave()}
+              checked={autoSave}
+            />
+          </label>
+        </Box>
+        <Button primary icon={<CloudUpload />} label={'Save'} onClick={() => savePack()} />
       </Box>
     </Header>
   )

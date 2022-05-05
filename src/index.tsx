@@ -3,6 +3,7 @@ import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Grommet, Text } from 'grommet'
 import { createRoot } from 'react-dom/client'
+import { ToastContainer } from 'react-toastify'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import Home from './pages/home/home'
@@ -10,6 +11,7 @@ import GamePage from './pages/game'
 import LoginPage from './pages/auth/login'
 import RegisterPage from './pages/auth/register'
 import CreatorPage from './pages/creator'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 const theme = {
   global: {
@@ -43,6 +45,16 @@ root.render(
         <Route path={'login/*'} element={<LoginPage />} />
         <Route path={'register/*'} element={<RegisterPage />} />
       </Routes>
+      <ToastContainer
+        position={'bottom-right'}
+        autoClose={3500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+      />
     </BrowserRouter>
   </Grommet>,
 )

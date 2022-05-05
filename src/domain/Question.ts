@@ -2,7 +2,7 @@ interface Question {
   text: string,
   time: number,
   type: 0 | 1,
-  media?: Picture | Video,
+  media: Picture | Video | null,
   answers: Answer[],
   id: string
 }

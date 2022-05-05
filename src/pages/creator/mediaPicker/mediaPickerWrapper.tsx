@@ -1,10 +1,8 @@
-import { time } from 'console'
 import {
-  Box, FormField, TextInput, Text, Button, Anchor,
+  Box, Anchor,
 } from 'grommet'
 import { Close } from 'grommet-icons'
-import React, { useState } from 'react'
-import { Picture, Question, Video } from '../../../domain/Question'
+import React from 'react'
 import MediaPicker from './mediaPicker'
 
 function MediaPickerWrapper(

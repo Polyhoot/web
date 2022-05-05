@@ -11,18 +11,18 @@ import { addQuestion, questions, removeQuestion } from '../../stores/pack'
 function Sidebar(
   props: {
     setQuestionId: (id: number) => void,
-    active: number
+    active: number,
   },
 ) {
   const store = useStore(questions)
   const { setQuestionId, active } = props
+
   return (
     <div className={'creator-sidebar'}>
       {store.map((q, index) => (
         <Card
           key={q.id}
           onClick={() => {
-            console.log('click')
             setQuestionId(index)
           }}
           margin={'10px auto'}
@@ -68,7 +68,6 @@ function Sidebar(
                     setQuestionId(index - 1 >= 0 ? index - 1 : 0)
                   }
                   removeQuestion(index)
-                  console.log(index - 1 >= 0 ? index - 1 : 0)
                 }}
               />
             </Box>

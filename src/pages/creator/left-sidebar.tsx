@@ -1,7 +1,5 @@
-import { useStore } from '@nanostores/react'
 import { Form, FormField, TextInput } from 'grommet'
-import React, { useState } from 'react'
-import { questions } from '../../stores/pack'
+import React from 'react'
 
 function LeftSidebar(
   props: {

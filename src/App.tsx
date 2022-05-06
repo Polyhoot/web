@@ -86,8 +86,10 @@ function App() {
             {
               label: 'Logout',
               onClick: () => {
-                localStorage.removeItem('default')
+                localStorage.removeItem('token')
                 navigate('/', { replace: true })
+                // eslint-disable-next-line no-restricted-globals
+                location.reload()
               },
             },
           ]}

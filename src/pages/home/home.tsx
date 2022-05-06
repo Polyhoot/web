@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Anchor, Box, Grid, Heading, Page, Spinner, Text,
+  Anchor, Box, Grid, Heading, Page, Spinner,
 } from 'grommet'
 import { toast } from 'react-toastify'
 import { useStore } from '@nanostores/react'

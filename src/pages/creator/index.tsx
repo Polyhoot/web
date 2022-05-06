@@ -98,7 +98,6 @@ function CreatorPage() {
   }
 
   useEffect(() => () => {
-    console.log('a')
     // eslint-disable-next-line no-restricted-globals
     if (autoSave || confirm('Are you sure, that you want to exit?')) {
       pack.set({ name: '' })

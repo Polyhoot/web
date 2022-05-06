@@ -1,5 +1,5 @@
 import { useStore } from '@nanostores/react'
-import { Box, Text, Anchor } from 'grommet'
+import { Box } from 'grommet'
 import React from 'react'
 import { profile } from '../../stores/profile'
 

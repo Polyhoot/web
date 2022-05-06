@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import {
-  Anchor,
   Box,
-  Button, FormField, Header, Text, TextInput,
+  Button, Header, Text, TextInput,
 } from 'grommet'
 import { CloudUpload, Home } from 'grommet-icons'
 import React from 'react'

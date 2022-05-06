@@ -25,28 +25,8 @@ function CreatorPage() {
   const autosaveInterval = useRef<NodeJS.Timer | null>(null)
 
   const navigate = useNavigate()
-  const savePack = async () => {
-    if (!store.name) {
-      toast('Set pack name to use autosave')
-      return
-    }
-    await fetch(`${getServerUrl}pack/create`, {
-      method: 'POST',
-      body: JSON.stringify({
-        name: store.name,
-        questions: questions.get(),
-      }),
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json',
-      },
-    }).then((res) => res.json()).catch(() => toast('Error. Try again later'))
-    pack.set({ name: '' })
-    questions.set([createQuestion()])
-    navigate('/')
-  }
 
-  const toggleAutosave = async () => {
+  const toggleAutosave = async (changeState = true) => {
     if (!store.name) {
       toast.error('Set pack name to use autosave')
       return
@@ -67,16 +47,17 @@ function CreatorPage() {
         updatePackId(response.packId)
       }
     }
-    setAutoSave(!autoSave)
-    if (!autoSave) {
-      toast.info('Autosave enabled')
-    } else {
-      toast.info('Autosave disabled')
+    if (changeState) {
+      setAutoSave(!autoSave)
+      if (!autoSave) {
+        toast.info('Autosave enabled')
+      } else {
+        toast.info('Autosave disabled')
+      }
     }
   }
 
   const autoSavePack = async () => {
-    if (!autoSave) return
     setSaving(true)
     await fetch(`${getServerUrl}pack/save`, {
       method: 'POST',
@@ -97,12 +78,33 @@ function CreatorPage() {
     })
   }
 
-  useEffect(() => () => {
+  const savePack = async () => {
+    if (!store.name) {
+      toast('Set pack name to use autosave')
+      return
+    }
+    if (store.id) {
+      autoSavePack()
+    } else {
+      toggleAutosave()
+      setAutoSave(false)
+    }
+  }
+
+  const exit = () => {
     pack.set({ name: '' })
     questions.set([createQuestion()])
-    if (autoSave) autoSavePack()
+    navigate('/')
+  }
+
+  useEffect(() => () => {
+    console.log('a')
     // eslint-disable-next-line no-restricted-globals
-    if (!autoSave) confirm('Are you sure, that you want to exit?')
+    if (autoSave || confirm('Are you sure, that you want to exit?')) {
+      pack.set({ name: '' })
+      questions.set([createQuestion()])
+      if (autoSave) autoSavePack()
+    }
   }, [])
 
   useEffect(() => {
@@ -142,6 +144,7 @@ function CreatorPage() {
               savePack={() => savePack()}
               toggleAutosave={() => toggleAutosave()}
               autoSave={autoSave}
+              exit={() => exit()}
             />
           </Box>
           <Box

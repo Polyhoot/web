@@ -15,10 +15,13 @@ function CreatorHeader(
     savePack: () => void,
     toggleAutosave: () => void,
     autoSave: boolean,
+    exit: () => void,
   },
 ) {
   const navigate = useNavigate()
-  const { savePack, toggleAutosave, autoSave } = props
+  const {
+    savePack, toggleAutosave, autoSave, exit,
+  } = props
   return (
     <Header
       height={'100%'}
@@ -55,7 +58,8 @@ function CreatorHeader(
             />
           </label>
         </Box>
-        <Button primary icon={<CloudUpload />} label={'Save'} onClick={() => savePack()} />
+        <Button secondary label={'Exit'} onClick={() => exit()} />
+        <Button primary icon={<CloudUpload />} label={'Save'} onClick={() => savePack()} margin={'auto 20px'} />
       </Box>
     </Header>
   )

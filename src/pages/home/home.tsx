@@ -1,16 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Anchor, Box, Grid, Heading, Page, Text,
+  Anchor, Box, Grid, Heading, Page, Spinner, Text,
 } from 'grommet'
+import { toast } from 'react-toastify'
 import { useStore } from '@nanostores/react'
 import { useNavigate } from 'react-router-dom'
 import { profile } from '../../stores/profile'
 import './home.scss'
+import { Pack } from '../../domain/Pack'
+import getServerUrl from '../../utils/getServerUrl'
+import SidebarRight from './sidebarRight/sidebarRight'
 
 function Home() {
   const user = useStore(profile)
   const navigate = useNavigate()
-  if (user.email) {
+  const [myPacks, setMyPacks] = useState<Pack[]>()
+  const [loading, setLoading] = useState(true)
+
+  const getUserPacks = async () => {
+    const result: {
+      packs: Pack[]
+    } = await fetch(`${getServerUrl}pack/get/my?max=2`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }).then((res) => res.json()).catch((e) => toast.error(e.text))
+    if (result) {
+      setMyPacks(result.packs)
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getUserPacks()
+  }, [])
+
+  if (user.email && myPacks && !loading) {
     return (
       <div className={'Home'}>
         <Grid
@@ -24,16 +49,24 @@ function Home() {
           areas={[
             { name: 'sidebar', start: [0, 0], end: [1, 0] },
             { name: 'main', start: [1, 0], end: [2, 0] },
-            { name: 'sidebar-left', start: [2, 0], end: [3, 0] },
+            { name: 'sidebar-right', start: [2, 0], end: [3, 0] },
           ]}
         >
           <Box gridArea={'sidebar'} background={'brand'} />
           <Box gridArea={'main'} background={'light-5'} />
-          <Box gridArea={'sidebar-left'} background={'light-2'}>
+          <Box gridArea={'sidebar-right'} background={'light-2'}>
             <Anchor label={'Create'} onClick={() => navigate('/creator')} />
+            <SidebarRight packs={myPacks} />
           </Box>
         </Grid>
       </div>
+    )
+  }
+  if (loading) {
+    return (
+      <Box width={'100%'} height={'100%'}>
+        <Spinner size={'large'} margin={'auto'} />
+      </Box>
     )
   }
   return (

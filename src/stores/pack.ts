@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid'
 import { atom, map } from 'nanostores'
 import { Picture, Question, Video } from '../domain/Question'
 
-export interface Pack {
+export interface PackStore {
   name: string,
   id?: string
 }
@@ -84,7 +84,7 @@ export function updateMedia(i: number, m: Video | Picture) {
   questions.set(updated)
 }
 
-export const pack = map<Pack>({
+export const pack = map<PackStore>({
   name: '',
 })
 

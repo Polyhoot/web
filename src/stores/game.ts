@@ -1,5 +1,5 @@
 import { map } from 'nanostores'
-import { Pack } from './pack'
+import { Pack } from '../domain/Pack'
 
 export interface Game {
   gamePin: number,

@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore } from '@nanostores/react'
 import {

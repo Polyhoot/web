@@ -4,6 +4,7 @@ import {
 } from 'grommet'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import validateEmail from '../../utils/validateEmail'
 import validatePassword from '../../utils/validatePassword'
 import getServerUrl from '../../utils/getServerUrl'
@@ -31,8 +32,7 @@ function RegisterPage() {
       localStorage.setItem('token', response.token)
       navigate('/')
     } else {
-      // eslint-disable-next-line no-alert
-      alert(response.errorMessage)
+      toast.error(response.errorMessage)
     }
   }
 

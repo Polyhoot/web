@@ -59,41 +59,49 @@ function App() {
   }
   return (
     <div className={'App'}>
-      <Header>
+      <Header
+        style={{
+          boxShadow: 'rgba(0, 0, 0, 0.1) 0px 2px 4px 0px',
+        }}
+      >
         <Box direction={'row'} width={'190px'} justify={'between'} margin={'auto 0px auto 20px'}>
           <Anchor icon={<HomeRounded />} label={'Home'} onClick={() => navigate('/')} />
           <Anchor icon={<Compass />} label={'Discover'} />
         </Box>
-
-        <Menu
-          label={(
-            <Box>
-              <Box direction={'row'} gap={'small'}>
-                <Avatar background={'accent-2'}>
-                  <UserFemale color={'accent-1'} />
-                </Avatar>
-                <Text alignSelf={'center'}>{user.name}</Text>
+        <Box direction={'row'}>
+          <Box margin={'auto 20px'}>
+            <Button icon={<AddCircle />} onClick={() => navigate('/creator')} label={'Create'} size={'small'} />
+          </Box>
+          <Menu
+            label={(
+              <Box>
+                <Box direction={'row'} gap={'small'}>
+                  <Avatar background={'accent-2'}>
+                    <UserFemale color={'accent-1'} />
+                  </Avatar>
+                  <Text alignSelf={'center'}>{user.name}</Text>
+                </Box>
               </Box>
-            </Box>
         )}
-          items={[
-            {
-              label: 'Profile',
-              onClick: () => {
-                navigate('/profile')
+            items={[
+              {
+                label: 'Profile',
+                onClick: () => {
+                  navigate('/profile')
+                },
               },
-            },
-            {
-              label: 'Logout',
-              onClick: () => {
-                localStorage.removeItem('token')
-                navigate('/', { replace: true })
-                // eslint-disable-next-line no-restricted-globals
-                location.reload()
+              {
+                label: 'Logout',
+                onClick: () => {
+                  localStorage.removeItem('token')
+                  navigate('/', { replace: true })
+                  // eslint-disable-next-line no-restricted-globals
+                  location.reload()
+                },
               },
-            },
-          ]}
-        />
+            ]}
+          />
+        </Box>
       </Header>
       <Outlet />
     </div>

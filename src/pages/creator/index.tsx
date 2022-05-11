@@ -3,7 +3,7 @@ import { useStore } from '@nanostores/react'
 import {
   Box, Grid,
 } from 'grommet'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Id, toast } from 'react-toastify'
 import {
   createQuestion, pack, questions, updatePackId,
@@ -23,7 +23,29 @@ function CreatorPage() {
   const toastId = useRef<Id | null>(null)
   const autosaveInterval = useRef<NodeJS.Timer | null>(null)
 
+  const params = useParams()
+
+  const { packId } = params
+
+  console.log(packId)
+
   const navigate = useNavigate()
+
+  const getPack = async () => {
+    const response = await fetch(`${getServerUrl}pack/get/${packId}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    if (response.ok) {
+      const result = await response.json()
+      console.log(result)
+      pack.set(result)
+      questions.set(result.questions)
+    }
+  }
 
   const toggleAutosave = async (changeState = true) => {
     if (!store.name) {
@@ -120,6 +142,13 @@ function CreatorPage() {
     if (saving) { toastId.current = toast.info('Saving...', { autoClose: false }) }
     if (!saving && toastId.current) toast.dismiss(toastId.current)
   }, [saving])
+
+  useEffect(() => {
+    if (packId) {
+      getPack()
+    }
+  }, [params])
+
   return (
     <div className={'App'}>
       <div className={'creator'}>

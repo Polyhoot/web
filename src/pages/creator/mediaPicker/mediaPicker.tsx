@@ -27,6 +27,7 @@ function MediaPicker(
               startTime: start,
               length: end - start,
               hideName: true,
+              type: 'video',
             })
           }}
           save={() => {
@@ -45,10 +46,11 @@ function MediaPicker(
           startTime: 0,
           length: 20,
           hideName: true,
+          type: 'video',
         })
       }}
       setPicture={(url) => {
-        updateMedia(id, { url })
+        updateMedia(id, { url, type: 'picture' })
         close()
       }}
     />

@@ -7,6 +7,7 @@ import { CloudUpload, Home } from 'grommet-icons'
 import React from 'react'
 import Switch from 'react-switch'
 import { useNavigate } from 'react-router-dom'
+import { useStore } from '@nanostores/react'
 import { pack } from '../../stores/pack'
 
 function CreatorHeader(
@@ -18,6 +19,7 @@ function CreatorHeader(
   },
 ) {
   const navigate = useNavigate()
+  const store = useStore(pack)
   const {
     savePack, toggleAutosave, autoSave, exit,
   } = props
@@ -34,6 +36,7 @@ function CreatorHeader(
         <TextInput
           placeholder={'Enter pack name...'}
           className={'header-input'}
+          value={store.name}
           onChange={(e) => {
             pack.setKey('name', e.target.value)
           }}

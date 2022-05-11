@@ -43,7 +43,7 @@ function CreatorAnswer(
       </Box>
       <Box margin={'auto'} width={'88%'} direction={'row'}>
         <TextInput
-          defaultValue={defaultText}
+          value={defaultText}
           onChange={(e) => {
             updateAnswerText(e.target.value)
           }}

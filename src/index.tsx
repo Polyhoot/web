@@ -12,6 +12,7 @@ import LoginPage from './pages/auth/login'
 import RegisterPage from './pages/auth/register'
 import CreatorPage from './pages/creator'
 import 'react-toastify/dist/ReactToastify.min.css'
+import PackPage from './pages/pack'
 
 const theme = {
   global: {
@@ -39,8 +40,10 @@ root.render(
         <Route path={'/'} element={<App />}>
           <Route index element={<Home />} />
           <Route path={'profile'} element={<Text>{'Hello profile'}</Text>} />
+          <Route path={'pack/:id'} element={<PackPage />} />
         </Route>
-        <Route path={'creator'} element={<CreatorPage />} />
+        <Route path={'creator/:packId'} element={<CreatorPage />} />
+        <Route path={'creator/'} element={<CreatorPage />} />
         <Route path={'game/*'} element={<GamePage />} />
         <Route path={'login/*'} element={<LoginPage />} />
         <Route path={'register/*'} element={<RegisterPage />} />

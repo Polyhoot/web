@@ -4,6 +4,7 @@ export interface Pack {
   name: string,
   id: string,
   questions: Question[],
-  author: string,
+  authorName: string,
+  authorId: string,
   createdAt: string
 }

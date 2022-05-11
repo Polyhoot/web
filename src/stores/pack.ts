@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid'
 import { atom, map } from 'nanostores'
-import { Picture, Question, Video } from '../domain/Question'
+import {
+  createMedia, Picture, Question, Video,
+} from '../domain/Question'
 
 export interface PackStore {
   name: string,
@@ -80,7 +82,7 @@ export function editQuestion(i: number, q: Question) {
 
 export function updateMedia(i: number, m: Video | Picture) {
   const updated = [...questions.get()]
-  updated[i].media = m
+  updated[i].media = createMedia(m)
   questions.set(updated)
 }
 

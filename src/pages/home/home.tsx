@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Anchor, Box, Grid, Heading, Page, Spinner,
+  Anchor, Box, Grid, Heading, Page, Spinner, Text,
 } from 'grommet'
 import { toast } from 'react-toastify'
 import { useStore } from '@nanostores/react'
@@ -20,7 +20,7 @@ function Home() {
   const getUserPacks = async () => {
     const result: {
       packs: Pack[]
-    } = await fetch(`${getServerUrl}pack/get/my?max=2`, {
+    } = await fetch(`${getServerUrl}pack/get/my?max=5`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -52,10 +52,14 @@ function Home() {
             { name: 'sidebar-right', start: [2, 0], end: [3, 0] },
           ]}
         >
-          <Box gridArea={'sidebar'} background={'brand'} />
-          <Box gridArea={'main'} background={'light-5'} />
+          <Box gridArea={'sidebar'} background={'light-4'} />
+          <Box gridArea={'main'} background={'light-5'}>
+            <Box margin={'auto'}>
+              <Text>{'Noting here yet! Here will be the news!'}</Text>
+            </Box>
+          </Box>
           <Box gridArea={'sidebar-right'} background={'light-2'}>
-            <Anchor label={'Create'} onClick={() => navigate('/creator')} />
+            <Heading size={'small'}>{'My packs'}</Heading>
             <SidebarRight packs={myPacks} />
           </Box>
         </Grid>

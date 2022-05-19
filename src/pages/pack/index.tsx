@@ -2,9 +2,6 @@ import {
   Box, Button, Page, Spinner, Heading, Text, Avatar,
 } from 'grommet'
 import { UserFemale } from 'grommet-icons'
-import {
-  PageHeader,
-} from 'grommet/components/PageHeader'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Pack } from '../../domain/Pack'

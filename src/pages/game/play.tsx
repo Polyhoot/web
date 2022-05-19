@@ -1,7 +1,8 @@
 import { useStore } from '@nanostores/react'
 import { Box, Spinner } from 'grommet'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
+  useNavigate,
   useParams,
 } from 'react-router-dom'
 import {
@@ -17,11 +18,21 @@ import Scoreboard from './scoreboard'
 function PlayPage() {
   const { id } = useParams<{ id: string }>()
 
+  const navigate = useNavigate()
+
   const game = useStore(gameStore)
-  const players = useStore(playersStore)
   const socket = useStore(socketStore)
 
   const [isLoading, setLoading] = useState(false)
+
+  const end = () => {
+    socket.send(JSON.stringify({
+      action: 'end',
+    }))
+    navigate('/')
+    resetGame()
+    playersStore.set([])
+  }
 
   const connectToHostSocket = (gameId: number) => {
     const ws = new WebSocket(`${getSocketUrl}/game/host`)
@@ -84,7 +95,7 @@ function PlayPage() {
   switch (game.status) {
     case 'LOBBY':
       return (
-        <Lobby />
+        <Lobby socket={socket} />
       )
     case 'QUESTION':
       return (
@@ -92,7 +103,11 @@ function PlayPage() {
       )
     case 'SCOREBOARD':
       return (
-        <Scoreboard />
+        <Scoreboard finished={false} end={() => end()} />
+      )
+    case 'FINISHED':
+      return (
+        <Scoreboard finished end={() => end()} />
       )
     default:
       return (

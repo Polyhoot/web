@@ -42,8 +42,13 @@ export const changeGameStatus = (status: 'LOBBY' | 'QUESTION' | 'SCOREBOARD' | '
 }
 
 export const nextQuestion = () => {
-  gameStore.setKey('question', gameStore.get().question + 1)
-  gameStore.setKey('status', 'QUESTION')
+  const { pack } = gameStore.get()
+  if (pack && pack.questions.length - 1 > gameStore.get().question) {
+    gameStore.setKey('question', gameStore.get().question + 1)
+    gameStore.setKey('status', 'QUESTION')
+  } else {
+    gameStore.setKey('status', 'FINISHED')
+  }
 }
 
 export const resetGame = () => {

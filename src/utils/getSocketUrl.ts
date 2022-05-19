@@ -1,2 +1,2 @@
 // TODO: use config
-export default 'ws://localhost:8080'
+export default 'wss://polyhoot.ciphen.net/'

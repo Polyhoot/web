@@ -2,9 +2,12 @@ import { useStore } from '@nanostores/react'
 import {
   Box, Button, Page, Text,
 } from 'grommet'
-import React, { useEffect, useState } from 'react'
-import { changeGameStatus, gameStore } from '../../stores/game'
+import React, { useEffect, useRef, useState } from 'react'
+import {
+  changeGameStatus, gameStore, playersStore, updatePlayerScore,
+} from '../../stores/game'
 import AnswersHolder from './answersHolder'
+import AnswerStats from './answerStats'
 import QuestionMain from './questionMain'
 import QuestionPreTimer from './questionPreTimer'
 
@@ -23,28 +26,50 @@ function QuestionPage(
   const [questionTime, setQuestionTime] = useState(question?.time || 30)
 
   const [answerStats, setAnswerStats] = useState([0, 0, 0, 0])
+  const [peopleAnswered, setAnswered] = useState(0)
+  const correctAnswers = useRef<number[]>([])
+
+  const skipQuestion = () => {
+    if (questionTime !== 0) {
+      setQuestionTime(0)
+    } else {
+      changeGameStatus('SCOREBOARD')
+    }
+  }
 
   const addAnswer = (index: number) => {
     const data = [...answerStats]
     data[index] += 1
     setAnswerStats(data)
+    setAnswered(peopleAnswered + 1)
+    if (playersStore.get().length === peopleAnswered + 1) {
+      skipQuestion()
+    }
   }
 
   const socketListener = (ev: MessageEvent<any>) => {
     const data = JSON.parse(ev.data)
     if (data.action === 'answer') {
+      console.log(data.answer)
       addAnswer(data.answer)
+    }
+    if (data.action === 'scoreboard') {
+      data.scoreboard.forEach(
+        (player: { name: string, score: number }) => updatePlayerScore(player.name, player.score),
+      )
     }
   }
 
   useEffect(() => {
     socket.addEventListener('message', socketListener)
 
+    return () => socket.removeEventListener('message', socketListener)
+  }, [peopleAnswered, answerStats])
+
+  useEffect(() => {
     socket.send(JSON.stringify({
       action: 'get_ready',
     }))
-
-    return () => socket.removeEventListener('message', socketListener)
   }, [])
 
   useEffect(() => {
@@ -53,18 +78,24 @@ function QuestionPage(
     }, 1000)
     if (timer > 4) {
       setCountingDown(false)
+    }
+    return () => clearInterval(interval)
+  }, [timer, isCountingDown])
+
+  useEffect(() => {
+    if (!isCountingDown) {
       const answers: number[] = []
       question?.answers.forEach((ans, i) => {
         if (ans.isCorrect) { answers.push(i) }
       })
+      correctAnswers.current = answers
       socket.send(JSON.stringify({
         action: 'send_question',
         duration: question?.time,
-        answers,
+        answer: answers[0],
       }))
     }
-    return () => clearInterval(interval)
-  }, [timer])
+  }, [isCountingDown])
 
   useEffect(() => {
     if (!isCountingDown) {
@@ -75,6 +106,9 @@ function QuestionPage(
         clearInterval(interval)
         socket.send(JSON.stringify({
           action: 'time_up',
+        }))
+        socket.send(JSON.stringify({
+          action: 'scoreboard',
         }))
       }
       return () => clearInterval(interval)
@@ -105,7 +139,7 @@ function QuestionPage(
           right: '10px',
         }}
       >
-        <Button label={'Skip'} size={'small'} onClick={() => changeGameStatus('SCOREBOARD')} />
+        <Button label={'Skip'} size={'small'} onClick={() => skipQuestion()} />
       </Box>
       <Box
         width={'85%'}
@@ -137,12 +171,12 @@ function QuestionPage(
                   type: 'picture',
                 }}
                 time={questionTime}
-                answersCounter={5}
+                answersCounter={peopleAnswered}
               />
             )
             : (
               <Box height={'500px'}>
-                {'time is up'}
+                <AnswerStats stats={answerStats} correct={correctAnswers.current} />
               </Box>
             )
         }

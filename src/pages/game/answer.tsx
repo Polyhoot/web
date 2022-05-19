@@ -7,7 +7,7 @@ import {
 import React from 'react'
 import { Answer } from '../../domain/Question'
 
-const styles = [
+export const styles = [
   {
     icon: <Radial color={'white'} fill={'white'} style={{ margin: 'auto' }} />,
     color: '#3D138D',

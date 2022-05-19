@@ -3,9 +3,16 @@ import {
   Box, Button, Heading, Page, Text,
 } from 'grommet'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { nextQuestion, playersStore } from '../../stores/game'
 
-function Scoreboard() {
+function Scoreboard(
+  props: {
+    finished: boolean,
+    end: () => void,
+  },
+) {
+  const { finished, end } = props
   const players = useStore(playersStore)
   return (
     <Page
@@ -22,7 +29,12 @@ function Scoreboard() {
           right: '10px',
         }}
       >
-        <Button label={'Skip'} size={'large'} onClick={() => nextQuestion()} />
+        {
+          finished
+            ? <Button label={'Exit'} size={'large'} onClick={() => end()} />
+            : <Button label={'Skip'} size={'large'} onClick={() => nextQuestion()} />
+        }
+
       </Box>
       <Box
         margin={'10px auto'}
@@ -30,20 +42,20 @@ function Scoreboard() {
         background={'light-2'}
         elevation={'medium'}
       >
-        <Text margin={'auto'} size={'42px'} weight={'bold'}>{'Scoreboard'}</Text>
+        <Text margin={'auto'} size={'42px'} weight={'bold'}>{finished ? 'Results' : 'Scoreboard'}</Text>
       </Box>
       <Box
         margin={'auto'}
         width={'70%'}
       >
         {
-          players.sort((a, b) => a.score - b.score).map((p, i) => {
+          players.sort((a, b) => b.score - a.score).map((p, i) => {
             if (i < 5) {
               return (
                 <Box
                   key={p.name}
                   width={'100%'}
-                  margin={'auto'}
+                  margin={'10px auto'}
                   elevation={'small'}
                   direction={'row'}
                   background={'light-1'}

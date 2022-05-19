@@ -6,7 +6,12 @@ import { User } from 'grommet-icons'
 import React, { useEffect, useState } from 'react'
 import { changeGameStatus, gameStore, playersStore } from '../../stores/game'
 
-function Lobby() {
+function Lobby(
+  props: {
+    socket: WebSocket
+  },
+) {
+  const { socket } = props
   const game = useStore(gameStore)
   const players = useStore(playersStore)
   const [isCountingDown, setCountingDown] = useState(false)
@@ -23,6 +28,14 @@ function Lobby() {
     }
     return () => undefined
   }, [timer, isCountingDown])
+
+  useEffect(() => {
+    if (isCountingDown) {
+      socket.send(JSON.stringify({
+        action: 'start_game',
+      }))
+    }
+  }, [isCountingDown])
 
   if (isCountingDown) {
     return (
@@ -108,7 +121,7 @@ function Lobby() {
             <Button
               primary
               label={'Start'}
-              disabled={players.length < 0}
+              disabled={players.length < 1}
               onClick={() => setCountingDown(true)}
             />
           </Box>

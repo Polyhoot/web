@@ -27,7 +27,7 @@ function Lobby() {
   if (isCountingDown) {
     return (
       <Page background={'neutral-2'} height={'100%'} style={{ position: 'relative' }}>
-        <Heading level={1} color={'white'}>{'Get ready!'}</Heading>
+        <Heading level={1} color={'white'} margin={'50px auto'}>{'Get ready!'}</Heading>
         <Box
           style={{
             borderRadius: '50%',

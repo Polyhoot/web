@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react'
 import {
-  Box, Button, Header, Heading, Page, Text,
+  Box, Button, Page, Text,
 } from 'grommet'
 import React, { useEffect, useState } from 'react'
 import { changeGameStatus, gameStore } from '../../stores/game'
@@ -22,12 +22,46 @@ function QuestionPage(
 
   const [questionTime, setQuestionTime] = useState(question?.time || 30)
 
+  const [answerStats, setAnswerStats] = useState([0, 0, 0, 0])
+
+  const addAnswer = (index: number) => {
+    const data = [...answerStats]
+    data[index] += 1
+    setAnswerStats(data)
+  }
+
+  const socketListener = (ev: MessageEvent<any>) => {
+    const data = JSON.parse(ev.data)
+    if (data.action === 'answer') {
+      addAnswer(data.answer)
+    }
+  }
+
+  useEffect(() => {
+    socket.addEventListener('message', socketListener)
+
+    socket.send(JSON.stringify({
+      action: 'get_ready',
+    }))
+
+    return () => socket.removeEventListener('message', socketListener)
+  }, [])
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer(timer + 1)
     }, 1000)
     if (timer > 4) {
       setCountingDown(false)
+      const answers: number[] = []
+      question?.answers.forEach((ans, i) => {
+        if (ans.isCorrect) { answers.push(i) }
+      })
+      socket.send(JSON.stringify({
+        action: 'send_question',
+        duration: question?.time,
+        answers,
+      }))
     }
     return () => clearInterval(interval)
   }, [timer])
@@ -39,6 +73,9 @@ function QuestionPage(
       }, 1000)
       if (questionTime === 0) {
         clearInterval(interval)
+        socket.send(JSON.stringify({
+          action: 'time_up',
+        }))
       }
       return () => clearInterval(interval)
     }

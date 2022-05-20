@@ -5,7 +5,7 @@ import {
   Avatar, Box, Button, Header, Menu, Spinner, Text,
 } from 'grommet'
 import {
-  AddCircle, Login, UserFemale, Compass, HomeRounded,
+  AddCircle, Login, UserFemale, Compass, HomeRounded, Download,
 } from 'grommet-icons'
 import { useNavigate, Outlet } from 'react-router-dom'
 import { useStore } from '@nanostores/react'
@@ -69,6 +69,9 @@ function App() {
           <Anchor icon={<Compass />} label={'Discover'} />
         </Box>
         <Box direction={'row'}>
+          <Box margin={'auto 0'}>
+            <Button icon={<Download />} onClick={() => navigate('/import')} label={'Import'} size={'small'} />
+          </Box>
           <Box margin={'auto 20px'}>
             <Button icon={<AddCircle />} onClick={() => navigate('/creator')} label={'Create'} size={'small'} />
           </Box>

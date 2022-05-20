@@ -13,6 +13,7 @@ import RegisterPage from './pages/auth/register'
 import CreatorPage from './pages/creator'
 import 'react-toastify/dist/ReactToastify.min.css'
 import PackPage from './pages/pack'
+import ImportKahoot from './pages/importKahoot'
 
 const theme = {
   global: {
@@ -41,6 +42,7 @@ root.render(
           <Route index element={<Home />} />
           <Route path={'profile'} element={<Text>{'Hello profile'}</Text>} />
           <Route path={'pack/:id'} element={<PackPage />} />
+          <Route path={'import'} element={<ImportKahoot />} />
         </Route>
         <Route path={'creator/:packId'} element={<CreatorPage />} />
         <Route path={'creator/'} element={<CreatorPage />} />

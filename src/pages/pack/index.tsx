@@ -50,7 +50,7 @@ function PackPage() {
               </Avatar>
               <Text alignSelf={'center'}>{pack.authorName}</Text>
             </Box>
-            <Box>
+            <Box width={'50%'} margin={'auto'}>
               <Button
                 label={'Start'}
                 onClick={() => {

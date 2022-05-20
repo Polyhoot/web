@@ -1,10 +1,10 @@
 /* eslint-disable react/require-default-props */
 import {
-  Box, Button, Image, Text,
+  Box, Image,
 } from 'grommet'
 import React from 'react'
 import ReactPlayer from 'react-player/youtube'
-import { Media, Question, Video } from '../../domain/Question'
+import { Media, Video } from '../../domain/Question'
 
 function MediaHolder(props: {
   media: Media,
@@ -20,8 +20,11 @@ function MediaHolder(props: {
             controls={false}
             config={{
               playerVars: {
-                autoplay: 0,
-                controls: 1,
+                autoplay: 1,
+                controls: 0,
+                showinfo: 0,
+                playsinline: 1,
+                modestbranding: 1,
                 start: video.startTime,
                 end: video.length + video.startTime,
               },

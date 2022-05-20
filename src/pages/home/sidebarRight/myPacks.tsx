@@ -52,9 +52,9 @@ function PackComponent(
       >
         <Box direction={'column'} margin={'auto'}>
           <Box>
-            <Text>{pack.name}</Text>
+            <Text truncate={'tip'}>{pack.name}</Text>
           </Box>
-          <Box direction={'row'}>
+          <Box direction={'row'} margin={'auto'}>
             <Text>
               {'Author: '}
               <Anchor label={pack.authorName} />

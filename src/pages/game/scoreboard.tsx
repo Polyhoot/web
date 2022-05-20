@@ -1,9 +1,8 @@
 import { useStore } from '@nanostores/react'
 import {
-  Box, Button, Heading, Page, Text,
+  Box, Button, Page, Text,
 } from 'grommet'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { nextQuestion, playersStore } from '../../stores/game'
 
 function Scoreboard(

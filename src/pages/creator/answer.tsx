@@ -2,7 +2,7 @@ import { Box, CheckBox, TextInput } from 'grommet'
 import {
   Radial, Square, Sun, Trigger,
 } from 'grommet-icons'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 const styles = [
   {

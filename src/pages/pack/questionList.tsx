@@ -10,6 +10,7 @@ function QuestionComponent(props: {
   showAnswer: boolean,
   index: number
 }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { question, showAnswer, index } = props
 
   return (

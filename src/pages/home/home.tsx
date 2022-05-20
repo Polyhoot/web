@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Anchor, Box, Grid, Heading, Page, Spinner, Text,
+  Box, Grid, Heading, Page, Spinner, Text,
 } from 'grommet'
 import { toast } from 'react-toastify'
 import { useStore } from '@nanostores/react'
-import { useNavigate } from 'react-router-dom'
 import { profile } from '../../stores/profile'
 import './home.scss'
 import { Pack } from '../../domain/Pack'
@@ -13,7 +12,6 @@ import SidebarRight from './sidebarRight/sidebarRight'
 
 function Home() {
   const user = useStore(profile)
-  const navigate = useNavigate()
   const [myPacks, setMyPacks] = useState<Pack[]>()
   const [loading, setLoading] = useState(true)
 

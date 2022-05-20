@@ -3,7 +3,6 @@ import {
 } from 'grommet'
 import React, { MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { parseClassName } from 'react-toastify/dist/utils'
 import { Pack } from '../../../domain/Pack'
 
 function PackComponent(
@@ -97,7 +96,7 @@ function MyPacks(
   }
   return (
     <Box overflow={'auto'} height={'100%'}>
-      {packs.map((pack, i) => (
+      {packs.map((pack) => (
         <PackComponent pack={pack} key={pack.id} />
       ))}
     </Box>

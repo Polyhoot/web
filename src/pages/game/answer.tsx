@@ -1,5 +1,5 @@
 import {
-  Box, TextInput, CheckBox, Text,
+  Box, Text,
 } from 'grommet'
 import {
   Radial, Square, Trigger, Sun,

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore } from '@nanostores/react'
 import {
@@ -27,8 +28,6 @@ function CreatorPage() {
 
   const { packId } = params
 
-  console.log(packId)
-
   const navigate = useNavigate()
 
   const getPack = async () => {
@@ -41,7 +40,6 @@ function CreatorPage() {
     })
     if (response.ok) {
       const result = await response.json()
-      console.log(result)
       pack.set(result)
       questions.set(result.questions)
     }

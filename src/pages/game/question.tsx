@@ -50,7 +50,6 @@ function QuestionPage(
   const socketListener = (ev: MessageEvent<any>) => {
     const data = JSON.parse(ev.data)
     if (data.action === 'answer') {
-      console.log(data.answer)
       addAnswer(data.answer)
     }
     if (data.action === 'scoreboard') {
@@ -93,7 +92,7 @@ function QuestionPage(
         action: 'send_question',
         duration: question?.time,
         answer: answers[0],
-        text: `${game.question}/${game.pack?.questions.length}`,
+        text: `${game.question + 1}/${game.pack?.questions.length}`,
       }))
     }
   }, [isCountingDown])

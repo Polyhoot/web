@@ -2,9 +2,8 @@
 import {
   Box, Image,
 } from 'grommet'
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import ReactPlayer from 'react-player/youtube'
-import { addAbortSignal } from 'stream'
 import { Media, Video } from '../../domain/Question'
 import './media.scss'
 
@@ -21,7 +20,6 @@ function MediaHolder(props: {
 }) {
   const { media } = props
   const player = useRef<ReactPlayer | null>(null)
-  console.log(media)
   if ((media as Video).length) {
     const video = (media as Video)
     return (
@@ -41,13 +39,10 @@ function MediaHolder(props: {
                   iv_load_policy: 3,
                   fs: 1,
                   widgetid: 1,
+                  volume: 0.4,
                   modestbranding: 1,
                   start: video.startTime,
                   end: video.length + video.startTime,
-                  origin: 'https://play.kahoot.it/',
-                },
-                embedOptions: {
-                  origin: 'https://play.kahoot.it/',
                 },
               }}
               width={'100%'}

@@ -106,7 +106,13 @@ function App() {
           />
         </Box>
       </Header>
-      <Outlet />
+      <Box
+        style={{
+          height: 'calc(100% - 72px)',
+        }}
+      >
+        <Outlet />
+      </Box>
     </div>
   )
 }

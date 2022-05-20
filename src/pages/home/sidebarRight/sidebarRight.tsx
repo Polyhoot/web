@@ -8,7 +8,12 @@ function SidebarRight(
 ) {
   const { packs } = props
   return (
-    <Box>
+    <Box
+      height={'100%'}
+      style={{
+        maxHeight: '100%',
+      }}
+    >
       <MyPacks packs={packs} />
     </Box>
   )

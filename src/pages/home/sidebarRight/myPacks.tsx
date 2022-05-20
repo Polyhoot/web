@@ -27,6 +27,7 @@ function PackComponent(
         cursor: 'pointer',
         border: '1px solid grey',
         margin: '10px auto',
+        minHeight: '100px',
       }}
     >
       <Box
@@ -95,14 +96,11 @@ function MyPacks(
     )
   }
   return (
-    <>
-      {packs.map((pack, i) => {
-        if (i > 5) return null
-        return (
-          <PackComponent pack={pack} key={pack.id} />
-        )
-      })}
-    </>
+    <Box overflow={'auto'} height={'100%'}>
+      {packs.map((pack, i) => (
+        <PackComponent pack={pack} key={pack.id} />
+      ))}
+    </Box>
   )
 }
 

@@ -20,7 +20,7 @@ function Home() {
   const getUserPacks = async () => {
     const result: {
       packs: Pack[]
-    } = await fetch(`${getServerUrl}pack/get/my?max=5`, {
+    } = await fetch(`${getServerUrl}pack/get/my?max=30`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -42,7 +42,6 @@ function Home() {
           rows={['100%']}
           className={'Home-grid'}
           margin={'auto'}
-          height={'100%'}
           fill
           columns={['small', 'medium', 'xsmall']}
           gap={'small'}

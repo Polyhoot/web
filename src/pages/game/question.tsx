@@ -93,6 +93,7 @@ function QuestionPage(
         action: 'send_question',
         duration: question?.time,
         answer: answers[0],
+        text: `${game.question}/${game.pack?.questions.length}`,
       }))
     }
   }, [isCountingDown])
@@ -140,6 +141,19 @@ function QuestionPage(
         }}
       >
         <Button label={'Skip'} size={'small'} onClick={() => skipQuestion()} />
+      </Box>
+      <Box
+        style={{
+          position: 'absolute',
+          top: '50px',
+          left: '10px',
+        }}
+      >
+        <Text weight={900}>
+          {game.question}
+          {'/'}
+          {game.pack?.questions.length}
+        </Text>
       </Box>
       <Box
         width={'85%'}

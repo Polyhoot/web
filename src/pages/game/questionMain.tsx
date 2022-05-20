@@ -16,7 +16,7 @@ function QuestionMain(props: {
     >
       <Box
         background={'light-2'}
-        margin={'auto 0 auto 0'}
+        margin={'auto auto auto 0'}
         style={{
           zIndex: '1000',
         }}

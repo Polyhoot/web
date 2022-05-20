@@ -149,7 +149,7 @@ function QuestionPage(
         }}
       >
         <Text weight={900}>
-          {game.question}
+          {game.question + 1}
           {'/'}
           {game.pack?.questions.length}
         </Text>

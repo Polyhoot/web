@@ -20,7 +20,7 @@ function QuestionMain(props: {
         style={{
           zIndex: '1000',
         }}
-        width={'10%'}
+        width={'20%'}
         height={'100%'}
       >
         <Box
@@ -55,7 +55,7 @@ function QuestionMain(props: {
         style={{
           zIndex: '1000',
         }}
-        width={'10%'}
+        width={'20%'}
         height={'100%'}
       >
         <Box

@@ -15,18 +15,29 @@ function QuestionMain(props: {
       direction={'row'}
     >
       <Box
-        background={'brand'}
+        background={'light-2'}
+        margin={'auto 0 auto 0'}
         style={{
-          margin: 'auto auto auto 30px',
-          width: '50px',
-          height: '50px',
-          borderRadius: '50%',
+          zIndex: '1000',
         }}
-        elevation={'small'}
+        width={'10%'}
+        height={'100%'}
       >
-        <Text color={'light-1'} weight={'bolder'} margin={'auto'}>
-          {time}
-        </Text>
+        <Box
+          background={'brand'}
+          style={{
+            margin: 'auto auto auto 30px',
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+            zIndex: '1000',
+          }}
+          elevation={'small'}
+        >
+          <Text color={'light-1'} weight={'bolder'} margin={'auto'}>
+            {time}
+          </Text>
+        </Box>
       </Box>
       <Box
         justify={'center'}
@@ -39,15 +50,26 @@ function QuestionMain(props: {
         <MediaHolder media={media} />
       </Box>
       <Box
-        justify={'center'}
-        alignSelf={'center'}
-        margin={'auto 20px auto auto'}
+        background={'light-2'}
+        margin={'auto 0 auto auto'}
         style={{
-          justifySelf: 'center',
+          zIndex: '1000',
         }}
+        width={'10%'}
+        height={'100%'}
       >
-        <Text weight={'bold'} size={'48px'}>{answersCounter}</Text>
-        <Text weight={'bold'} size={'18px'}>{'Answers'}</Text>
+        <Box
+          justify={'center'}
+          alignSelf={'center'}
+          margin={'auto'}
+          style={{
+            justifySelf: 'center',
+            zIndex: '1001',
+          }}
+        >
+          <Text weight={'bold'} size={'48px'}>{answersCounter}</Text>
+          <Text weight={'bold'} size={'18px'}>{'Answers'}</Text>
+        </Box>
       </Box>
     </Box>
   )

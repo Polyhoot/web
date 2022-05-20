@@ -61,6 +61,8 @@ function ImportKahoot() {
     }).then((res) => {
       if (res.status !== 200) {
         toast.error('AutoSave error!')
+      } else {
+        toast.success(`Imported ${questions.length} questions`)
       }
     })
   }

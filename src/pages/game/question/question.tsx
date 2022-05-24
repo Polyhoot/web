@@ -5,9 +5,9 @@ import {
 import React, { useEffect, useRef, useState } from 'react'
 import {
   changeGameStatus, gameStore, playersStore, updatePlayerScore,
-} from '../../stores/game'
-import AnswersHolder from './answersHolder'
-import AnswerStats from './answerStats'
+} from '../../../stores/game'
+import AnswersHolder from '../answer/answersHolder'
+import AnswerStats from '../answer/answerStats'
 import QuestionMain from './questionMain'
 import QuestionPreTimer from './questionPreTimer'
 

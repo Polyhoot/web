@@ -1,19 +1,16 @@
 import {
-  Anchor,
-  Box, Button, MaskedInput, Text,
+  Anchor, Box, Button, MaskedInput, Text,
 } from 'grommet'
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player/youtube'
-import { Video } from '../../../domain/Question'
-import getVideoId from '../../../utils/getVideoId'
+import { Video } from '../../../../domain/Question'
+import getVideoId from '../../../../utils/getVideoId'
 
-function VideoPicker(
-  props: {
-    video: Video,
-    changeTime: (start: number, end: number) => void,
-    save: () => void,
-  },
-) {
+function VideoPicker(props: {
+  video: Video
+  changeTime: (start: number, end: number) => void
+  save: () => void
+}) {
   const { video, changeTime, save } = props
 
   const videoId = getVideoId(video.url)
@@ -49,7 +46,9 @@ function VideoPicker(
         </Box>
         <Box direction={'row'} margin={'10px 0'}>
           <Box width={'120px'}>
-            <Text size={'small'} margin={'auto auto 5px 2px'}>{'Start Time'}</Text>
+            <Text size={'small'} margin={'auto auto 5px 2px'}>
+              {'Start Time'}
+            </Text>
             <Box direction={'row'}>
               <MaskedInput
                 textAlign={'center'}
@@ -82,7 +81,9 @@ function VideoPicker(
             </Box>
           </Box>
           <Box width={'120px'} margin={'0 0 0 auto'}>
-            <Text size={'small'} margin={'auto auto 5px 2px'}>{'End Time'}</Text>
+            <Text size={'small'} margin={'auto auto 5px 2px'}>
+              {'End Time'}
+            </Text>
             <Box direction={'row'}>
               <MaskedInput
                 textAlign={'center'}
@@ -121,10 +122,7 @@ function VideoPicker(
       </Box>
     )
   }
-  return (
-    <>
-    </>
-  )
+  return null
 }
 
 export default VideoPicker

@@ -2,16 +2,18 @@ import { useStore } from '@nanostores/react'
 import { Box, Grid, TextInput } from 'grommet'
 import React, { useState } from 'react'
 import {
-  questions, updateAnswerStatus, updateAnswerText, updateQuestionTime, updateTitle,
+  questions,
+  updateAnswerStatus,
+  updateAnswerText,
+  updateQuestionTime,
+  updateTitle,
 } from '../../stores/pack'
-import CreatorAnswer from './answer'
+import CreatorAnswer from './answer/answer'
 import LeftSidebar from './left-sidebar'
-import MediaHolder from './mediaHolder'
-import MediaPickerWrapper from './mediaPicker/mediaPickerWrapper'
+import MediaHolder from './media/mediaHolder'
+import MediaPickerWrapper from './media/mediaPicker/mediaPickerWrapper'
 
-function QuestionEditor(props: {
-  id: number
-}) {
+function QuestionEditor(props: { id: number }) {
   const { id } = props
   const store = useStore(questions)
   const current = store[id]
@@ -44,7 +46,10 @@ function QuestionEditor(props: {
             plain
             focusIndicator={false}
           />
-          <MediaHolder question={current} showPicker={() => setShowPicker(true)} />
+          <MediaHolder
+            question={current}
+            showPicker={() => setShowPicker(true)}
+          />
           <div className={'creator-question--answers'}>
             {current.answers.map((ans, index) => (
               <CreatorAnswer
@@ -52,7 +57,7 @@ function QuestionEditor(props: {
                 updateAnswerStatus={(status) => updateAnswerStatus(id, index, status)}
                 index={index}
                 isCorrect={ans.isCorrect}
-            // eslint-disable-next-line react/no-array-index-key
+                // eslint-disable-next-line react/no-array-index-key
                 key={`${id}_answer#${index}`}
                 defaultText={ans.text}
               />
@@ -72,11 +77,9 @@ function QuestionEditor(props: {
           time={current.time}
         />
       </Box>
-      {
-            showPicker
-              ? <MediaPickerWrapper close={() => setShowPicker(false)} id={id} />
-              : null
-          }
+      {showPicker ? (
+        <MediaPickerWrapper close={() => setShowPicker(false)} id={id} />
+      ) : null}
     </Grid>
   )
 }

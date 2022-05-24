@@ -5,7 +5,7 @@ import {
   Radial, Square, Trigger, Sun,
 } from 'grommet-icons'
 import React from 'react'
-import { Answer } from '../../domain/Question'
+import { Answer } from '../../../domain/Question'
 
 export const styles = [
   {

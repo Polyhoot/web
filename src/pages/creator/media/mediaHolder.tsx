@@ -4,9 +4,9 @@ import {
 import { AddCircle } from 'grommet-icons'
 import React from 'react'
 import ReactPlayer from 'react-player/youtube'
-import { Question, Video } from '../../domain/Question'
+import { Question, Video } from '../../../domain/Question'
 
-function MediaHolder(props: { question: Question, showPicker: () => void }) {
+function MediaHolder(props: { question: Question; showPicker: () => void }) {
   const { question, showPicker } = props
   if (!question.media) {
     return (
@@ -23,7 +23,7 @@ function MediaHolder(props: { question: Question, showPicker: () => void }) {
     )
   }
   if ((question.media as Video).length) {
-    const video = (question.media as Video)
+    const video = question.media as Video
     return (
       <div className={'creator-question--media'}>
         <Box width={'100%'} height={'100%'}>

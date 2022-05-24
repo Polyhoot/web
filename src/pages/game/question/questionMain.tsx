@@ -1,7 +1,7 @@
 import { Box, Text } from 'grommet'
 import React from 'react'
-import { Media } from '../../domain/Question'
-import MediaHolder from './mediaHolder'
+import { Media } from '../../../domain/Question'
+import MediaHolder from '../mediaHolder'
 
 function QuestionMain(props: {
   media: Media,

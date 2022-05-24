@@ -11,7 +11,7 @@ import {
 import getServerUrl from '../../utils/getServerUrl'
 import getSocketUrl from '../../utils/getSocketUrl'
 import Lobby from './lobby'
-import QuestionPage from './question'
+import QuestionPage from './question/question'
 import Scoreboard from './scoreboard'
 
 // eslint-disable-next-line react/no-unused-prop-types

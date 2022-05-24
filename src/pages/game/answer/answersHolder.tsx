@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { Box } from 'grommet'
 import React from 'react'
-import { Answer } from '../../domain/Question'
+import { Answer } from '../../../domain/Question'
 import GameAnswer from './answer'
 
 function AnswersHolder(props: {

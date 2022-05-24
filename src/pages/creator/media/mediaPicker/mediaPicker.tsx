@@ -1,18 +1,11 @@
-import {
-  Box,
-} from 'grommet'
+import { Box } from 'grommet'
 import React, { useState } from 'react'
-import { Video } from '../../../domain/Question'
-import { updateMedia } from '../../../stores/pack'
+import { Video } from '../../../../domain/Question'
+import { updateMedia } from '../../../../stores/pack'
 import MediaPickerInput from './mediaPickerInput'
 import VideoPicker from './videoPicker'
 
-function MediaPicker(
-  props: {
-    id: number,
-    close: () => void
-  },
-) {
+function MediaPicker(props: { id: number; close: () => void }) {
   const { id, close } = props
   const [video, setVideo] = useState<Video>()
 

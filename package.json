@@ -32,7 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "NODE_OPTIONS=--experimental-vm-modules react-scripts test --transformIgnorePatterns \"node_modules/(?!nanostores)/\"",
     "eject": "react-scripts eject",
     "lint:fix": "eslint --fix --ext .ts,.tsx,.js,.jsx src",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx src"

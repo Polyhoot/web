@@ -3,5 +3,6 @@
   "eslint.alwaysShowStatus": true,
   "editor.fontFamily": "'Martian Mono', Monaco, 'Courier New', monospace",
   "editor.tabSize": 2,
-  "editor.cursorStyle": "block"
+  "editor.cursorStyle": "block",
+  "editor.formatOnSave": true
 }

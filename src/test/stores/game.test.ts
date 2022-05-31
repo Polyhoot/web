@@ -1,4 +1,3 @@
-import { cleanStores } from 'nanostores'
 import { Pack } from '../../domain/Pack'
 import {
   gameStore, Game, nextQuestion, changeGameStatus, resetGame,

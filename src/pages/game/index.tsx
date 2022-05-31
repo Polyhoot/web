@@ -6,7 +6,6 @@ function GamePage() {
   return (
     <div className={'App'}>
       <Routes>
-        {/* <Route path={'/create/:packId'} /> */}
         <Route path={'/play/:id'} element={<PlayPage />} />
       </Routes>
     </div>

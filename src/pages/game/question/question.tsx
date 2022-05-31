@@ -91,7 +91,7 @@ function QuestionPage(
       socket.send(JSON.stringify({
         action: 'send_question',
         duration: question?.time,
-        answer: answers[0],
+        answers,
         text: `${game.question + 1}/${game.pack?.questions.length}`,
       }))
     }

@@ -1,4 +1,5 @@
 import { Box, Text } from 'grommet'
+import { nanoid } from 'nanoid'
 import React from 'react'
 import { styles } from './answer'
 
@@ -19,7 +20,7 @@ function AnswerStats(
       height={'500px'}
     >
       {stats.map((v, i) => (
-        <Box width={'100px'} margin={'auto'} height={'100%'}>
+        <Box width={'100px'} margin={'auto'} height={'100%'} key={nanoid(3)}>
           <Box height={'90%'} width={'100%'}>
             <Box background={styles[i].color} height={`${(v * 100) / total}%`} alignSelf={'end'} margin={'auto 0 0 0'} width={'100%'} />
           </Box>

@@ -59,10 +59,12 @@ describe('playersStore:', () => {
     expect(playersStore.get()).toStrictEqual([{
       name: 'test player',
       score: 0,
+      isConnected: true,
     },
     {
       name: 'test player 2',
       score: 0,
+      isConnected: true,
     },
     ])
   })
@@ -72,10 +74,12 @@ describe('playersStore:', () => {
     expect(playersStore.get()).toStrictEqual([{
       name: 'test player',
       score: 130,
+      isConnected: true,
     },
     {
       name: 'test player 2',
       score: 0,
+      isConnected: true,
     },
     ])
   })

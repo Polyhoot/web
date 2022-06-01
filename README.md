@@ -16,7 +16,7 @@
 
 ## Tech
 
-We uses a number of open source projects to work properly:
+We use a number of open source projects to work properly:
 
 - [TypeScript](https://github.com/microsoft/TypeScript) - TypeScript is a strongly typed programming language that builds on JavaScript
 - [ReactJS](https://github.com/facebook/react) - JavaScript library for building user interfaces.

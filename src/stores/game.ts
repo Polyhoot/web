@@ -30,6 +30,10 @@ export const addPlayer = (name: string) => {
   playersStore.set(arr)
 }
 
+export const removePlayer = (name: string) => {
+  playersStore.set(playersStore.get().filter((p) => p.name !== name))
+}
+
 export const updatePlayerScore = (name: string, score: number) => {
   const arr = playersStore.get()
   const index = arr.findIndex((player) => player.name === name)

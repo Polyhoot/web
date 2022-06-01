@@ -4,7 +4,9 @@ import {
 } from 'grommet'
 import { User } from 'grommet-icons'
 import React, { useEffect, useState } from 'react'
-import { changeGameStatus, gameStore, playersStore } from '../../stores/game'
+import {
+  changeGameStatus, gameStore, playersStore, removePlayer,
+} from '../../stores/game'
 
 function Lobby(
   props: {
@@ -36,6 +38,20 @@ function Lobby(
       }))
     }
   }, [isCountingDown])
+
+  useEffect(() => {
+    const listener = (ev: MessageEvent<any>) => {
+      const data = JSON.parse(ev.data)
+      if (data.action === 'player_disconnected') {
+        removePlayer(data.name)
+      }
+    }
+    if (socket) {
+      socket.addEventListener('message', listener)
+      return () => socket.removeEventListener('message', listener)
+    }
+    return () => {}
+  }, [socket])
 
   if (isCountingDown) {
     return (

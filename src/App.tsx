@@ -12,6 +12,7 @@ import { useStore } from '@nanostores/react'
 import { profile } from './stores/profile'
 import getServerUrl from './utils/getServerUrl'
 import UserInfoResponse from './domain/UserInfoResponse'
+import getGravatarURL from './utils/getGravatarUrl'
 
 function App() {
   const user = useStore(profile)
@@ -24,6 +25,7 @@ function App() {
     }).then((res) => res.json())
     if (result.email) {
       profile.set(result)
+      profile.setKey('gravatar', getGravatarURL(result.email))
     }
     setLoading(false)
   }
@@ -79,8 +81,8 @@ function App() {
             label={(
               <Box>
                 <Box direction={'row'} gap={'small'}>
-                  <Avatar background={'accent-2'}>
-                    <UserFemale color={'accent-1'} />
+                  <Avatar background={'accent-2'} src={user.gravatar}>
+                    {user.gravatar ? null : <UserFemale />}
                   </Avatar>
                   <Text alignSelf={'center'}>{user.name}</Text>
                 </Box>

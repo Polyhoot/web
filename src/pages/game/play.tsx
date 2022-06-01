@@ -6,7 +6,7 @@ import {
   useParams,
 } from 'react-router-dom'
 import {
-  addPlayer, gameStore, playersStore, resetGame, socketStore,
+  addPlayer, gameStore, playersStore, resetGame, socketStore, updatePlayerStatus,
 } from '../../stores/game'
 import getServerUrl from '../../utils/getServerUrl'
 import getSocketUrl from '../../utils/getSocketUrl'
@@ -47,6 +47,9 @@ function PlayPage() {
         // TODO: More types here
         if (data.action === 'player_connected') {
           addPlayer(data.name)
+        }
+        if (data.action === 'player_disconnected') {
+          updatePlayerStatus(data.name, false)
         }
       })
     })

@@ -4,7 +4,7 @@ import {
 } from 'grommet'
 import React, { useEffect, useRef, useState } from 'react'
 import {
-  changeGameStatus, gameStore, playersStore, updatePlayerScore,
+  changeGameStatus, gameStore, updatePlayerScore,
 } from '../../../stores/game'
 import AnswersHolder from '../answer/answersHolder'
 import AnswerStats from '../answer/answerStats'
@@ -42,7 +42,7 @@ function QuestionPage(
     data[index] += 1
     setAnswerStats(data)
     setAnswered(peopleAnswered + 1)
-    if (playersStore.get().length === peopleAnswered + 1) {
+    if (game.connectedPlayers === peopleAnswered + 1) {
       skipQuestion()
     }
   }

@@ -10,6 +10,7 @@ describe('gameStore:', () => {
     expect(gameStore.get()).toStrictEqual<Game>({
       question: 0,
       status: 'LOBBY',
+      connectedPlayers: 0,
     })
   })
 
@@ -42,6 +43,7 @@ describe('gameStore:', () => {
     expect(gameStore.get()).toStrictEqual<Game>({
       question: 0,
       status: 'LOBBY',
+      connectedPlayers: 0,
     })
   })
 })

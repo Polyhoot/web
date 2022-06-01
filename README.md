@@ -1,12 +1,12 @@
 # Polyhoot! Web client
 
 <img width="120" height="120" alt="Polyhoot! Logo"
-     src="https://github.com/Polyhoot/.github/blob/main/logo.jpeg?raw=true" align="right">
-     
-### Main web application for Polyhoot! game. Used for creating packs and hosting games.
+     src="https://github.com/Polyhoot/.github/blob/main/logo.svg?raw=true" align="right">
 
+### Main web application for Polyhoot! game. Used for creating packs and hosting games
 
 **For demo visit [polyhoot.ciphen.net](https://polyhoot.ciphen.net/)**
+
 ## Features
 
 - Selfhosting available
@@ -41,7 +41,6 @@ cd web
 yarn
 yarn build
 ```
-
 
 ## Development
 
@@ -81,6 +80,7 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
 ## License
 
 `Apache License 2.0`

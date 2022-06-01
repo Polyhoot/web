@@ -1,3 +1,60 @@
+# Polyhoot! Web client
+
+<img width="120" height="120" alt="Polyhoot! Logo"
+     src="https://github.com/Polyhoot/.github/blob/main/logo.jpeg?raw=true" align="right">
+     
+### Main web application for Polyhoot! game. Used for creating packs and hosting games.
+
+
+**For demo visit [polyhoot.ciphen.net](https://polyhoot.ciphen.net/)**
+## Features
+
+- Selfhosting available
+- Import questions directly from Kahoot
+- Create your own packs
+- Host a game for [`android`](https://github.com/Polyhoot/android) and [`web`](https://github.com/Polyhoot/play) clients
+
+## Tech
+
+We uses a number of open source projects to work properly:
+
+- [TypeScript](https://github.com/microsoft/TypeScript) - TypeScript is a strongly typed programming language that builds on JavaScript
+- [ReactJS](https://github.com/facebook/react) - JavaScript library for building user interfaces.
+- [Grommet](https://github.com/grommet/grommet) - grommet is a react-based framework & components library
+- [nanostores](https://github.com/nanostores/nanostores) - A tiny state manager for React
+- [Webpack](https://github.com/webpack/webpack) - Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser
+
+And of course Polyhoot! itself is open source with a [public repository](https://github.com/Polyhoot/web)
+ on GitHub.
+
+## Installation
+
+Polyhoot! requires [Node.js](https://nodejs.org/) v12+ to run. **Latest LTS is recommended!**
+It also requires [Yarn](https://yarnpkg.com/).
+
+Install the dependencies and devDependencies and start the server.
+
+Change `getSocketUrl.ts` and `getServerUrl.ts`.
+
+```sh
+cd web
+yarn
+yarn build
+```
+
+
+## Development
+
+Want to contribute? Great!
+
+Make a change in your file and instantaneously see your updates!
+
+Open your favorite Terminal and run this commands.
+
+```sh
+yarn start
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -24,13 +81,8 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
+`Apache License 2.0`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Free Software, Hell Yeah!**
